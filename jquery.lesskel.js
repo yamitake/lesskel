@@ -54,11 +54,12 @@
     if(!arr)arr = {};
     
     var tagName = elem.tagName.toLowerCase();
-    if(!arr[tagName])arr[tagName] = {};
     
     if(elem.id){
-      arr[tagName]['&#' + elem.id] = {};
+      tagName += '&#' + elem.id;
     }
+    
+    if(!arr[tagName])arr[tagName] = {};
     
     if(elem.className){
       var classNames = elem.className.split(' ');
