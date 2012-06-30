@@ -60,6 +60,7 @@
     }
     
     if(!arr[tagName])arr[tagName] = {};
+    arr[tagName]["@style"] = elem.style.cssText;
     
     if(elem.className){
       var classNames = elem.className.split(' ');
@@ -99,7 +100,9 @@
    */
   function makeLessSrc(lessObj , options){
     for( var i in lessObj ) {
-      dist += indent(depth) + (i + "{\n");
+      if (i == "@style") continue ;
+
+      dist += indent(depth) + (i + "{\n") + indent(depth+1) + (lessObj[i]["@style"]||'') + "\n";
       depth++;
       makeLessSrc(lessObj[i] , options);
       depth--;
