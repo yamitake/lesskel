@@ -35,7 +35,7 @@
        * default Options
        */
       var defaults = {
-        title : "test",
+        skelton : true
       };
 
       var opts = $.extend(defaults, options);
@@ -56,11 +56,16 @@
     var tagName = elem.tagName.toLowerCase();
     
     if(elem.id){
-      tagName += '&#' + elem.id;
+      tagName += '#' + elem.id;
     }
     
     if(!arr[tagName])arr[tagName] = {};
     arr[tagName]["@style"] = elem.style.cssText;
+    
+    //
+    if(tagName == 'a'){
+      arr[tagName]["&:hover"] = {};
+    }
     
     if(elem.className){
       var classNames = elem.className.split(' ');
