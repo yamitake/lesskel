@@ -2,6 +2,8 @@
   var _selectedClassName = "lesskel_selected";
   var selected_elem;
   
+  $("head").append("<style>html body .lesskel_selected{border:1px dashed #5371b7;box-shadow: 1px 1px 3px #00f;}</style>");
+  
   function inspect(e){
       if(selected_elem && selected_elem === e.target){
         $(selected_elem).removeClass(_selectedClassName);
