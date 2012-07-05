@@ -36,7 +36,7 @@
        */
       var defaults = {
         skelton : true ,
-        exclude_class : ["lesskel_selected"],
+        exclude_tag : ["head" , "meta" , "style" , "script"],
       };
 
       var opts = $.extend(defaults, options);
@@ -55,6 +55,11 @@
     if(!arr)arr = {};
     
     var tagName = elem.tagName.toLowerCase();
+    
+    //check exclude tag
+    if($.inArray(tagName, opts.exclude_tag) >= 0){
+      return arr;
+    }
     
     if(elem.id){
       tagName += '#' + elem.id;
