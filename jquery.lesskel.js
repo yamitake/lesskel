@@ -35,7 +35,9 @@
        * default Options
        */
       var defaults = {
-        title : "test",
+        skelton : true ,
+        includeCssText: false ,
+        excludeTag : ["head" , "meta" , "style" , "script"],
       };
 
       var opts = $.extend(defaults, options);
@@ -50,29 +52,46 @@
    * @param {html element} elem
    * @param {Object} arr
    */
-  function makeLessObj(elem , arr){
+  function makeLessObj(elem , arr , opts){
     if(!arr)arr = {};
     
     var tagName = elem.tagName.toLowerCase();
     
-    if(elem.id){
-      tagName += '&#' + elem.id;
+    //check exclude tag
+    if($.inArray(tagName, opts.excludeTag) >= 0){
+      return arr;
     }
     
-    if(!arr[tagName])arr[tagName] = {};
-    arr[tagName]["@style"] = elem.style.cssText;
+    if(elem.id){
+      tagName += '#' + elem.id;
+    }
     
     if(elem.className){
       var classNames = elem.className.split(' ');
       var length = classNames.length;
       for(var i = 0; i < length; i++){
+        if(i == 0 && length == 1){
+          tagName += '.' + classNames[i];
+          if(!arr[tagName])arr[tagName] = {};
+          
+         break;
+        }
+        
+        if(!arr[tagName])arr[tagName] = {};
         arr[tagName]['&.' + classNames[i]] = {};
       }
     }
     
+    if(!arr[tagName])arr[tagName] = {};
+    if(opts.includeCssText)arr[tagName]["@style"] = elem.style.cssText;
+    
+    if(tagName == 'a'){
+      arr[tagName]["&:hover"] = {};
+    }
+    
     var length = elem.children.length;
     for(var i = 0; i < length; i++){
-      makeLessObj(elem.children[i] , arr[tagName]);
+      makeLessObj(elem.children[i] , arr[tagName] , opts);
     }
 
     return arr;
@@ -85,11 +104,11 @@
  * @param {Object} lessObj
  * @param {Object} options
    */
-  function generate(lessObj , options){
+  function generate(lessObj , opts){
     dist = "";
     depth = 0;
     
-    makeLessSrc(lessObj , options);
+    makeLessSrc(lessObj , opts);
     return dist;
   }
   
@@ -98,19 +117,19 @@
  * @param {Object} lessObj
  * @param {Object} options
    */
-  function makeLessSrc(lessObj , options){
+  function makeLessSrc(lessObj , opts){
     for( var i in lessObj ) {
       if (i == "@style") continue ;
 
       dist += indent(depth) + (i + "{\n") + indent(depth+1) + (lessObj[i]["@style"]||'') + "\n";
       depth++;
-      makeLessSrc(lessObj[i] , options);
+      makeLessSrc(lessObj[i] , opts);
       depth--;
       dist += indent(depth) + "}\n";
     }
   }
   
-  function indent(depth){
+  function indent(depth ){
       var tab = "";
       for(var i = 0; i < depth; i++){
           tab += "  ";
