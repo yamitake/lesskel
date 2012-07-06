@@ -36,7 +36,8 @@
        */
       var defaults = {
         skelton : true ,
-        exclude_tag : ["head" , "meta" , "style" , "script"],
+        includeCssText: false ,
+        excludeTag : ["head" , "meta" , "style" , "script"],
       };
 
       var opts = $.extend(defaults, options);
@@ -57,7 +58,7 @@
     var tagName = elem.tagName.toLowerCase();
     
     //check exclude tag
-    if($.inArray(tagName, opts.exclude_tag) >= 0){
+    if($.inArray(tagName, opts.excludeTag) >= 0){
       return arr;
     }
     
@@ -65,20 +66,27 @@
       tagName += '#' + elem.id;
     }
     
-    if(!arr[tagName])arr[tagName] = {};
-    if(!opts.skelton)arr[tagName]["@style"] = elem.style.cssText;
-    
-    //
-    if(tagName == 'a'){
-      arr[tagName]["&:hover"] = {};
-    }
-    
     if(elem.className){
       var classNames = elem.className.split(' ');
       var length = classNames.length;
       for(var i = 0; i < length; i++){
+        if(i == 0 && length == 1){
+          tagName += '.' + classNames[i];
+          if(!arr[tagName])arr[tagName] = {};
+          
+         break;
+        }
+        
+        if(!arr[tagName])arr[tagName] = {};
         arr[tagName]['&.' + classNames[i]] = {};
       }
+    }
+    
+    if(!arr[tagName])arr[tagName] = {};
+    if(opts.includeCssText)arr[tagName]["@style"] = elem.style.cssText;
+    
+    if(tagName == 'a'){
+      arr[tagName]["&:hover"] = {};
     }
     
     var length = elem.children.length;
