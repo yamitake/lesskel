@@ -9,6 +9,8 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
 
+    <link href="http://current.bootstrapcdn.com/bootstrap-v204/css/bootstrap-combined.min.css" rel="stylesheet">
+
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -28,61 +30,71 @@
     <div id="content-wrapper">
       <div class="inner clearfix">
         <section id="main-content">
-          <h3>Welcome to GitHub Pages.</h3>
+          <h3>What is Lesskel?</h3>
+          <p>
+            レスケルはブラウザで表示されているHtmlソースコードから、lessのスケルトンを作成できるツールです。
+          </p>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+          <h3>How to Use.</h3>
+          <p>
+            Lesskelはブックマークレットとして機能を提供しています。ブラウザで開いている状態でブックマークレットを使用する事で、Lesskelが使用できます。
+            <span class="niotice">※一部webページには対応していません。</span>
+            <br />
+            <a class="btn btn-large btn-success" href="javascript:(function()%7Bif(typeof%20jQuery==%22undefined%22)%7Bvar%20jq=document.createElement('script');jq.type='text/javascript';jq.src='http://code.jquery.com/jquery-1.7.2.min.js';document.documentElement.appendChild(jq);%7Dvar%20lesskel=document.createElement('script');lesskel.type='text/javascript';lesskel.src='https://raw.github.com/yamitake/lesskel/master/jquery.lesskel.js';document.documentElement.appendChild(lesskel);var%20s=document.createElement('script');s.type='text/javascript';s.src='https://raw.github.com/yamitake/lesskel/master/bookmarklet.js';document.documentElement.appendChild(s);%7D)();"> + lesskel </a>
+            ← Add this link to your Bookmarks Bar
+          </p>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
+          <h3>jquery.lesskel.js</h3>
+          <p>
+            このライブラリはjquery pluginとして作られており、下記の様に使用できます。
+          </p>
+          <pre><code>var elem = document.getElementById('id');//or $("#id");  ← Jquery
+var src = $.lesskel(elem); // src is String. ex) div#id{}
+
+//other
+var options = {includeCssText:true}; //htmlにstyle属性が直書きしてる場合に出力する。
+$.lesskel(elem , options);
 </code></pre>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+          <!-- X:S ZenBackWidget -->
+          <script type="text/javascript">
+            document.write(unescape("%3Cscript") + " src='http://widget.zenback.jp/?base_uri=http%3A//yamitake.github.com&nsid=101357009454016841%3A%3A106054894342926339&rand=" + Math.ceil((new Date() * 1) * Math.random()) + "' type='text/javascript'" + unescape("%3E%3C/script%3E"));
+          </script><!-- X:E ZenBackWidget -->
 
-<h3>Designer Templates</h3>
-
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
-
-<h3>Rather Drive Stick?</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
         </section>
 
         <aside id="sidebar">
-          <a href="https://github.com/yamitake/lesskel/zipball/master" class="button">
-            <small>Download</small>
-            .zip file
-          </a>
-          <a href="https://github.com/yamitake/lesskel/tarball/master" class="button">
-            <small>Download</small>
-            .tar.gz file
-          </a>
+          <a href="https://github.com/yamitake/lesskel/zipball/master" class="button"> <small>Download</small> .zip file </a>
+          <a href="https://github.com/yamitake/lesskel/tarball/master" class="button"> <small>Download</small> .tar.gz file </a>
 
-          <p class="repo-owner"><a href="https://github.com/yamitake/lesskel"></a> is maintained by <a href="https://github.com/yamitake">yamitake</a>.</p>
+          <p class="repo-owner">
+            <a href="https://github.com/yamitake/lesskel"></a> is maintained by <a href="https://github.com/yamitake">yamitake</a>.
+          </p>
 
-          <p>This page was generated by <a href="pages.github.com">GitHub Pages</a> using the Architect theme by <a href="http://twitter.com/jasonlong">Jason Long</a>.</p>
+          <p>
+            This page was generated by <a href="pages.github.com">GitHub Pages</a> using the Architect theme by <a href="http://twitter.com/jasonlong">Jason Long</a>.
+          </p>
+
+          <p>
+            Tips<br />
+            <a href="http://lesscss.org/">LESS « The Dynamic Stylesheet language</a>
+          </p>
+
         </aside>
       </div>
     </div>
 
-            <script type="text/javascript">
-            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-          </script>
-          <script type="text/javascript">
-            try {
-              var pageTracker = _gat._getTracker("UA-1623421-6");
-            pageTracker._trackPageview();
-            } catch(err) {}
-          </script>
+    <script type="text/javascript">
+      var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+      document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+      try {
+        var pageTracker = _gat._getTracker("UA-1623421-6");
+        pageTracker._trackPageview();
+      } catch(err) {
+      }
+    </script>
 
   </body>
 </html>
