@@ -34,8 +34,9 @@
   $(document).click(function(e){
     $(selected_elem).removeClass(_selectedClassName);
     var src = $.lesskel(selected_elem);
+    statusmsg.html("<b style='color:#ccccff;'>Less src code is Copied to Clipboad</b>");
     statusbar.delay(5000).fadeOut("slow");
-    alert(src);
+    alert(src);//TODO copy
     
     $(document).unbind("click");
     $(document).unbind("mouseover" , inspect);
