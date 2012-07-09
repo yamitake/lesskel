@@ -37,6 +37,7 @@
       var defaults = {
         skelton : true ,
         includeCssText: false ,
+        copyall:false , // @Deprecated copy all css properties.
         excludeTag : ["head" , "meta" , "style" , "script"],
       };
 
@@ -82,8 +83,19 @@
       }
     }
     
+    //copy style
     if(!arr[tagName])arr[tagName] = {};
     if(opts.includeCssText)arr[tagName]["@style"] = elem.style.cssText;
+    if(opts.copyall){
+      if($.cssproperties){
+        if(!arr[tagName]["@style"])arr[tagName]["@style"]  = '';
+        
+        arr[tagName]["@style"] += '\n';
+        arr[tagName]["@style"] += $.cssproperties(elem , {prefix:indent(depth + 1)});
+      }else{
+        alert("To enable this feature is required for jquery.csspropeties.js library.");
+      }
+    }
     
     if(tagName == 'a'){
       arr[tagName]["&:hover"] = {};
@@ -137,4 +149,6 @@
   
       return tab;
   }
+  
+  var properties = [];
 })(jQuery);
