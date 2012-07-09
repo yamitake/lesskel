@@ -137,4 +137,6 @@
   
       return tab;
   }
+  
+  var properties = [];
 })(jQuery);
