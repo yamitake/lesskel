@@ -12,10 +12,19 @@
       ':' + 
       '<span id="lesskel_statusmsg">select html elements</span>' +
       '<a href="http://yamitake.github.com/lesskel" style="float:right;" target="_blank">?</a>' +
-      '<textarea id="lesskel_result" style="display:none;width:480px;height:113px;" val="" ></textarea>' +
+      '<div id="lesskel_result_area" style="display:none;">' +
+      '<textarea id="lesskel_result" style="width:480px;height:113px;" val="" ></textarea>' +
+      '<input type="checkbox" id="lesskel_includeCssText" style="float:left;"><label style="float: left; padding-right: 16px; padding-left: 5px;" for="lesskel_includeCssText">includeCssText</label>' +
+      '<input type="checkbox" id="lesskel_copyall" style="float:left;"><label style="padding-left: 5px;float:left;" for="lesskel_copyall">copyAllProperties</label>' +
+      '</div>' + 
     '</div>');
     statusbar = $("#lesskel_statusbar");
     statusmsg = $("#lesskel_statusmsg");
+    
+    $("#lesskel_includeCssText,#lesskel_copyall").click(function(){
+      var src = $.lesskel(selected_elem , {includeCssText:$("#lesskel_includeCssText").attr('checked') , copyall:$("#lesskel_copyall").attr('checked')});
+      $('#lesskel_result').val(src);
+    });
   }
   statusbar.fadeIn("slow");
   
@@ -38,7 +47,8 @@
     statusmsg.html("<b style='color:#ccccff;'>Please use the copy and paste the following sources.</b>");
     //statusbar.delay(5000).fadeOut("slow");
     
-    $('#lesskel_result').val(src).show("slow");
+    $('#lesskel_result').val(src);
+    $('#lesskel_result_area').show("slow");
     //alert(src);
     
     $(document).unbind("click");

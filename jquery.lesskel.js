@@ -35,7 +35,6 @@
        * default Options
        */
       var defaults = {
-        skelton : true ,
         includeCssText: false ,
         copyall:false , // @Deprecated copy all css properties.
         excludeTag : ["head" , "meta" , "style" , "script"],
