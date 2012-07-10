@@ -12,6 +12,7 @@
       ':' + 
       '<span id="lesskel_statusmsg">select html elements</span>' +
       '<a href="http://yamitake.github.com/lesskel" style="float:right;" target="_blank">?</a>' +
+      '<textarea id="lesskel_result" style="display:none;width:480px;height:113px;" val="" ></textarea>' +
     '</div>');
     statusbar = $("#lesskel_statusbar");
     statusmsg = $("#lesskel_statusmsg");
@@ -34,9 +35,11 @@
   $(document).click(function(e){
     $(selected_elem).removeClass(_selectedClassName);
     var src = $.lesskel(selected_elem);
-    statusmsg.html("<b style='color:#ccccff;'>Less src code is Copied to Clipboad</b>");
-    statusbar.delay(5000).fadeOut("slow");
-    alert(src);//TODO copy
+    statusmsg.html("<b style='color:#ccccff;'>Please use the copy and paste the following sources.</b>");
+    //statusbar.delay(5000).fadeOut("slow");
+    
+    $('#lesskel_result').val(src).show("slow");
+    //alert(src);
     
     $(document).unbind("click");
     $(document).unbind("mouseover" , inspect);
