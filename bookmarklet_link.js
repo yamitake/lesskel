@@ -13,10 +13,10 @@ if(typeof jQuery == "undefined"){
 //load jquery.lesskel.js
 var lesskel = document.createElement('script');
 lesskel.type='text/javascript';
-lesskel.src='https://raw.githubusercontent.com/yamitake/lesskel/master/jquery.lesskel.js';
+lesskel.src='https://cdn.rawgit.com/yamitake/lesskel/master/jquery.lesskel.js';
 document.documentElement.appendChild(lesskel);
 
 var s=document.createElement('script');
 s.type='text/javascript';
-s.src='https://raw.githubusercontent.com/yamitake/lesskel/master/bookmarklet.js';
+s.src='https://cdn.rawgit.com/yamitake/lesskel/master/bookmarklet.js';
 document.documentElement.appendChild(s);
